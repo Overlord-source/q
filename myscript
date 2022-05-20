@@ -1,0 +1,13 @@
+#!/bin/bash
+ if [ -n $1 ]
+ then SERVER_NAME=Servers
+ else SERVER_NAME=$1
+ fi
+
+wget https://raw.githubusercontent.com/GreatMedivack/files/master/list.out
+grep Running list.out | cut -d' ' -f1 > ${SERVER_NAME}_$(date +'%d_%m_%Y')_running.out
+
+tar -cf ${SERVER_NAME}_$(date +'%d_%m_%Y').tar ${SERVER_NAME}_$(date +'%d_%m_%Y')_running.out
+mv -n ${SERVER_NAME}_$(date +'%d_%m_%Y').tar archives
+
+
